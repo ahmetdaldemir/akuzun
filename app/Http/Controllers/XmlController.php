@@ -62,7 +62,7 @@ class XmlController extends Controller
             $book1->addChild("Tax", 18);
             $book1->addChild("ProductStockQuantity", $items->xpath('ProductStockQuantity')[0]);
             $book1->addChild("DeliveryTime", $items->xpath('DeliveryTime')[0]);
-            $book1->addChild("ProductPrice", $items->xpath('ProductPrice')[0] + ($items->xpath('ProductPrice')[0] * 55) / 100);
+            $book1->addChild("ProductPrice", $items->xpath('ProductPrice')[0] + ($items->xpath('ProductPrice')[0] * 100) / 100);
             //$book1->addChild("ProductCombinations", $item['ProductCombinations']);
             $pictures = $book1->addChild("Pictures");
 
