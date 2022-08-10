@@ -16,10 +16,20 @@ use App\Models\Xml;
 */
 
 Route::get('/', function () {
-    
+
    $data['xml'] =  Xml::all();
     return view('welcome',$data);
 });
 Route::post('xml.save', [XmlController::class, 'save'])->name('xml.save');
 Route::get('xml.parser', [XmlController::class, 'parser'])->name('xml.parser');
+
+
+Route::get('/category', [\App\Http\Controllers\Trendyol\IndexController::class,'categoryUrlCrawler']);
+//Route::get('/products/{pi}', [\App\Http\Controllers\Trendyol\IndexController::class,'allProducts']);
+Route::get('/prod', [\App\Http\Controllers\Trendyol\IndexController::class,'allProducts']);
+Route::get('/json/{pi}', [\App\Http\Controllers\Trendyol\IndexController::class,'jsonSave']);
+Route::get('/json', [\App\Http\Controllers\Trendyol\IndexController::class,'jsonSave']);
+Route::get('/view', [\App\Http\Controllers\Trendyol\IndexController::class,'view']);
+
+Route::get('/joom-send', [\App\Http\Controllers\Joom\IndexController::class,'send']);
 
