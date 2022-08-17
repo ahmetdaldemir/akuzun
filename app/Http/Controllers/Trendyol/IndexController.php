@@ -102,6 +102,7 @@ https://connect.entegresan.com/joom.php
 
         $category_url_1 = 'https://public.trendyol.com/discovery-web-searchgw-service/v2/api/filter/kadin-x-g1?culture=tr-TR&userGenderId=1&pId=0&scoringAlgorithmId=2&categoryRelevancyEnabled=false&isLegalRequirementConfirmed=false&productStampType=TypeA&fixSlotProductAdsIncluded=false&pi=1';
         $store_url_1 = 'https://public.trendyol.com/discovery-web-searchgw-service/v2/api/infinite-scroll/sr?mid='."447462".'&os=1&culture=tr-TR&userGenderId=1&pId=0&scoringAlgorithmId=2&categoryRelevancyEnabled=false&isLegalRequirementConfirmed=false&searchStrategyType=DEFAULT&productStampType=TypeA&fixSlotProductAdsIncluded=false&pi='.'1';
+        $brand_url = 'https://public.trendyol.com/discovery-web-searchgw-service/v2/api/infinite-scroll/okyanus-home-x-b146047?culture=tr-TR&userGenderId=1&pId=0&scoringAlgorithmId=2&categoryRelevancyEnabled=false&isLegalRequirementConfirmed=false&searchStrategyType=DEFAULT&productStampType=TypeA&fixSlotProductAdsIncluded=false&pi='.'1';
         $pageIndex = file_get_contents($category_url_1);
         $pageIndex = json_decode($pageIndex);
         /*if ($page->isSuccess == true && $page->statusCode == 200) {
@@ -148,7 +149,7 @@ https://connect.entegresan.com/joom.php
         }*/
 
         for ($i = 48;$i<=$pageIndex->result->totalCount/24; $i++) {
-            $category_url = 'https://public.trendyol.com/discovery-web-searchgw-service/v2/api/filter/kadin-x-g1?culture=tr-TR&userGenderId=1&pId=0&scoringAlgorithmId=2&categoryRelevancyEnabled=false&isLegalRequirementConfirmed=false&productStampType=TypeA&fixSlotProductAdsIncluded=false&pi='.$i;
+            $category_url = 'https://public.trendyol.com/discovery-web-searchgw-service/v2/api/infinite-scroll/okyanus-home-x-b146047?culture=tr-TR&userGenderId=1&pId=0&scoringAlgorithmId=2&categoryRelevancyEnabled=false&isLegalRequirementConfirmed=false&searchStrategyType=DEFAULT&productStampType=TypeA&fixSlotProductAdsIncluded=false&pi='.$i;
             $page = file_get_contents($category_url);
             $page = json_decode($page);
             if ($page->isSuccess == true && $page->statusCode == 200) {
@@ -193,10 +194,10 @@ https://connect.entegresan.com/joom.php
                         $product_content->platform = $val->brand->name;
                         $product_content->save();
                     }
-                    sleep(15);
+                    sleep(5);
                 }
             }
-            sleep(45);
+            sleep(3);
         }
 
         return json_encode($page->isSuccess);
@@ -212,7 +213,8 @@ https://connect.entegresan.com/joom.php
         }
         $page_detail = $client_link->request('GET',$url);
 
-        $this->results[$product_id]['detail_name'] = $page_detail->filter('.detail-name')->text();
+       // $this->results[$product_id]['detail_name'] = $page_detail->filter('.detail-name')->text();
+        $this->results[$product_id]['detail_name'] = $page_detail->filter('.detail-name')->text().' '.$page_detail->filter('.detail-name.detail-desc-list li')->text();
 //        $this->results[$product_id]['detail_desc'] = $page_detail->filter('.detail-desc-list')->text();
 //        $page_detail->filter('.product-slide-container')->each(function ($itm) use ($product_id){
 //            $this->results[$product_id]['image'] = str_replace('mnresize/128/192/','',$itm->filter('.styles-module_slider__o0fqa > .product-slide > img')->attr('src'));
