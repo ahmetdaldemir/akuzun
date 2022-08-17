@@ -214,7 +214,6 @@ https://connect.entegresan.com/joom.php
         $page_detail = $client_link->request('GET',$url);
 
        // $this->results[$product_id]['detail_name'] = $page_detail->filter('.detail-name')->text();
-
         $this->results[$product_id]['detail_name'] = $page_detail->filter('.detail-name')->text().' '.$page_detail->filter('.detail-name.detail-desc-list li')->text();
 //        $this->results[$product_id]['detail_desc'] = $page_detail->filter('.detail-desc-list')->text();
 //        $page_detail->filter('.product-slide-container')->each(function ($itm) use ($product_id){
