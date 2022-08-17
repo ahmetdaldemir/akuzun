@@ -215,6 +215,7 @@ https://connect.entegresan.com/joom.php
 
        // $this->results[$product_id]['detail_name'] = $page_detail->filter('.detail-name')->text();
         $this->results[$product_id]['detail_name'] = $page_detail->filter('.detail-name')->text().' '.$page_detail->filter('.detail-name.detail-desc-list li')->text();
+
 //        $this->results[$product_id]['detail_desc'] = $page_detail->filter('.detail-desc-list')->text();
 //        $page_detail->filter('.product-slide-container')->each(function ($itm) use ($product_id){
 //            $this->results[$product_id]['image'] = str_replace('mnresize/128/192/','',$itm->filter('.styles-module_slider__o0fqa > .product-slide > img')->attr('src'));
