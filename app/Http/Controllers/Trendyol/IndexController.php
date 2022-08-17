@@ -103,7 +103,7 @@ https://connect.entegresan.com/joom.php
         $category_url_1 = 'https://public.trendyol.com/discovery-web-searchgw-service/v2/api/filter/kadin-x-g1?culture=tr-TR&userGenderId=1&pId=0&scoringAlgorithmId=2&categoryRelevancyEnabled=false&isLegalRequirementConfirmed=false&productStampType=TypeA&fixSlotProductAdsIncluded=false&pi=1';
         $store_url_1 = 'https://public.trendyol.com/discovery-web-searchgw-service/v2/api/infinite-scroll/sr?mid='."447462".'&os=1&culture=tr-TR&userGenderId=1&pId=0&scoringAlgorithmId=2&categoryRelevancyEnabled=false&isLegalRequirementConfirmed=false&searchStrategyType=DEFAULT&productStampType=TypeA&fixSlotProductAdsIncluded=false&pi='.'1';
         $brand_url = 'https://public.trendyol.com/discovery-web-searchgw-service/v2/api/infinite-scroll/okyanus-home-x-b146047?culture=tr-TR&userGenderId=1&pId=0&scoringAlgorithmId=2&categoryRelevancyEnabled=false&isLegalRequirementConfirmed=false&searchStrategyType=DEFAULT&productStampType=TypeA&fixSlotProductAdsIncluded=false&pi='.'1';
-        $pageIndex = file_get_contents($category_url_1);
+        $pageIndex = file_get_contents($brand_url);
         $pageIndex = json_decode($pageIndex);
         /*if ($page->isSuccess == true && $page->statusCode == 200) {
             foreach ($page->result->products as $val) {
