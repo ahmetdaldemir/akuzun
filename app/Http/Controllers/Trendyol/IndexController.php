@@ -148,7 +148,7 @@ https://connect.entegresan.com/joom.php
             }
         }*/
 
-        for ($i = 48;$i<=$pageIndex->result->totalCount/24; $i++) {
+        for ($i = 0;$i<=$pageIndex->result->totalCount/24; $i++) {
             $category_url = 'https://public.trendyol.com/discovery-web-searchgw-service/v2/api/infinite-scroll/okyanus-home-x-b146047?culture=tr-TR&userGenderId=1&pId=0&scoringAlgorithmId=2&categoryRelevancyEnabled=false&isLegalRequirementConfirmed=false&searchStrategyType=DEFAULT&productStampType=TypeA&fixSlotProductAdsIncluded=false&pi='.$i;
             $page = file_get_contents($category_url);
             $page = json_decode($page);
