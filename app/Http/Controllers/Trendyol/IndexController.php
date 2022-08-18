@@ -11,6 +11,7 @@ use App\Models\Store;
 use DOMDocument;
 use Goutte\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class IndexController extends Controller
 {
@@ -148,7 +149,7 @@ https://connect.entegresan.com/joom.php
             }
         }*/
 
-        for ($i = 1;$i<=$pageIndex->result->totalCount/24; $i++) {
+        for ($i = 10;$i<=$pageIndex->result->totalCount/24; $i++) {
             $category_url = 'https://public.trendyol.com/discovery-web-searchgw-service/v2/api/infinite-scroll/okyanus-home-x-b146047?culture=tr-TR&userGenderId=1&pId=0&scoringAlgorithmId=2&categoryRelevancyEnabled=false&isLegalRequirementConfirmed=false&searchStrategyType=DEFAULT&productStampType=TypeA&fixSlotProductAdsIncluded=false&pi='.$i;
             $page = file_get_contents($category_url);
             $page = json_decode($page);
@@ -164,6 +165,12 @@ https://connect.entegresan.com/joom.php
                         $product->merchant_id = $val->merchantId;
                         $product->images = json_encode($val->images, true);
                         $product->save();
+                        foreach ($val->images as $img) {
+                            $url = "https://cdn.dsmcdn.com".$img;
+                            $contents = file_get_contents($url);
+                            $name = $val->id.'.'.substr($url, strrpos($url, '.') + 1);
+                            Storage::put($name, $contents);
+                        }
                     }
                     if (empty(Store::where('merchant_id',$val->merchantId)->first())) {
                         $store = new Store;
@@ -182,8 +189,8 @@ https://connect.entegresan.com/joom.php
                         $product_content->product_id = $val->id;
                         $product_content->name = $val->name;
                         $product_content->description = $this->results[$val->id]['detail_name'];
-                        $product_content->attributeValue = $val->variants->attributeValue;
-                        $product_content->attributeName = $val->variants->attributeName;
+                        $product_content->attributeValue = $val->variants->attributeValue ?? "";
+                        $product_content->attributeName = $val->variants->attributeName ?? "";
                         $product_content->language_id = 1;
                         $product_content->save();
                     }
@@ -196,7 +203,7 @@ https://connect.entegresan.com/joom.php
                     }
                 }
             }
-            sleep(5);
+            sleep(15);
         }
 
         return json_encode($page->isSuccess);
@@ -212,7 +219,8 @@ https://connect.entegresan.com/joom.php
         }
         $page_detail = $client_link->request('GET',$url);
 
-       // $this->results[$product_id]['detail_name'] = $page_detail->filter('.detail-name')->text();
+        // $this->results[$product_id]['detail_name'] = $page_detail->filter('.detail-name')->text();
+
         $this->results[$product_id]['detail_name'] = $page_detail->filter('.detail-name')->text().' '.$page_detail->filter('.detail-desc-list li:first-child')->text();
 
 //        $this->results[$product_id]['detail_desc'] = $page_detail->filter('.detail-desc-list')->text();
