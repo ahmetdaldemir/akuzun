@@ -194,10 +194,9 @@ https://connect.entegresan.com/joom.php
                         $product_content->platform = $val->brand->name;
                         $product_content->save();
                     }
-                    sleep(5);
                 }
             }
-            sleep(3);
+            sleep(5);
         }
 
         return json_encode($page->isSuccess);
