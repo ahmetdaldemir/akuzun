@@ -33,3 +33,6 @@ Route::get('/view', [\App\Http\Controllers\Trendyol\IndexController::class,'view
 
 Route::get('/joom-send', [\App\Http\Controllers\Joom\IndexController::class,'send']);
 
+
+Route::get('/xml-products-save', [\App\Http\Controllers\XmlProduct\indexController::class,'index']);
+
