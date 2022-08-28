@@ -56,10 +56,12 @@ class indexController extends Controller
                     $XmlPictures->PictureUrl = $item['PictureUrl']??"";
                     $XmlPictures->save();
 
-                    $url = $item['PictureUrl'];
-                    $contents = file_get_contents($url);
-                    $name = $val['ProductId'].'.'.substr($url, strrpos($url, '.') + 1);
-                    Storage::put($name, $contents);
+                    $url = $item['PictureUrl']??"";
+                    if (!empty($url)) {
+                        $contents = file_get_contents($url);
+                        $name = $val['ProductId'].'.'.substr($url, strrpos($url, '.') + 1);
+                        Storage::put($name, $contents);
+                    }
                 }
             //}
             //if (empty(XmlCategory::where('ProductId',$val['ProductId'])->first())) {
