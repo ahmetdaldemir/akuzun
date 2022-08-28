@@ -41,11 +41,11 @@ class indexController extends Controller
                 foreach ($val['ProductCombinations']['ProductCombination'] as $item) {
                     $XmlProductCombination = new XmlProductCombination;
                     $XmlProductCombination->ProductId = $val['ProductId'];
-                    $XmlProductCombination->ProductCombinationId = $item['ProductCombinationId'];
-                    $XmlProductCombination->VariantGtin = $item['VariantGtin'];
-                    $XmlProductCombination->VariantStockQuantity = $item['VariantStockQuantity'];
-                    $XmlProductCombination->VariantName = $item['ProductAttributes']['ProductAttribute']['VariantName'];
-                    $XmlProductCombination->VariantValue = $item['ProductAttributes']['ProductAttribute']['VariantValue'];
+                    $XmlProductCombination->ProductCombinationId = $item['ProductCombinationId']??"";
+                    $XmlProductCombination->VariantGtin = $item['VariantGtin']??"";
+                    $XmlProductCombination->VariantStockQuantity = $item['VariantStockQuantity']??"";
+                    $XmlProductCombination->VariantName = $item['ProductAttributes']['ProductAttribute']['VariantName']??"";
+                    $XmlProductCombination->VariantValue = $item['ProductAttributes']['ProductAttribute']['VariantValue']??"";
                     $XmlProductCombination->save();
                 }
             //}
@@ -66,20 +66,21 @@ class indexController extends Controller
                 foreach ($val['Categories']['Category'] as $item) {
                     $XmlCategory = new XmlCategory;
                     $XmlCategory->ProductId = $val['ProductId'];
-                    $XmlCategory->CategoryId = $item['CategoryId'];
-                    $XmlCategory->CategorName = $item['CategorName'];
-                    $XmlCategory->CategoryPath = $item['CategoryPath'];
+                    $XmlCategory->CategoryId = $item['CategoryId']??"";
+                    $XmlCategory->CategorName = $item['CategorName']??"";
+                    $XmlCategory->CategoryPath = $item['CategoryPath']??"";
                     $XmlCategory->save();
                 }
             //}
             //if (empty(XmlManufacturer::where('ProductId',$val['ProductId'])->first())) {
-                foreach ($val->XmlManufacturers->XmlManufacturer as $item) {
+            // dd($val['Manufacturers']['Manufacturer']);
+                //foreach ($val['Manufacturers']['Manufacturer'] as $item) {
                     $XmlManufacturer = new XmlManufacturer;
                     $XmlManufacturer->ProductId = $val['ProductId'];
-                    $XmlManufacturer->ManufacturerId = $item['ManufacturerId'];
-                    $XmlManufacturer->ManufacturerName = $item['ManufacturerName'];
+                    $XmlManufacturer->ManufacturerId = $val['Manufacturers']['Manufacturer']['ManufacturerId']??"";
+                    $XmlManufacturer->ManufacturerName = $val['Manufacturers']['Manufacturer']['ManufacturerName']??"";
                     $XmlManufacturer->save();
-                }
+                //}
             //}
         }
         return "Başarılı";

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('xml_pictures', function (Blueprint $table) {
             $table->id();
             $table->string('ProductId');
-            $table->longText('PictureUrl');
+            $table->longText('PictureUrl')->nullable();
             $table->timestamps();
         });
     }

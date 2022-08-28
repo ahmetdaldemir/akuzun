@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('xml_manufacturers', function (Blueprint $table) {
             $table->id();
             $table->string('ProductId');
-            $table->string('ManufacturerId');
-            $table->string('ManufacturerName');
+            $table->string('ManufacturerId')->nullable();
+            $table->string('ManufacturerName')->nullable();
             $table->timestamps();
         });
     }

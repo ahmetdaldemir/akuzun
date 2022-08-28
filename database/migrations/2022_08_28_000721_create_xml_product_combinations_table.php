@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('xml_product_combinations', function (Blueprint $table) {
             $table->id();
             $table->string('ProductId');
-            $table->string('ProductCombinationId');
-            $table->string('VariantGtin');
-            $table->string('VariantStockQuantity');
-            $table->string('VariantName');
-            $table->string('VariantValue');
+            $table->string('ProductCombinationId')->nullable();
+            $table->string('VariantGtin')->nullable();
+            $table->string('VariantStockQuantity')->nullable();
+            $table->string('VariantName')->nullable();
+            $table->string('VariantValue')->nullable();
             $table->timestamps();
         });
     }

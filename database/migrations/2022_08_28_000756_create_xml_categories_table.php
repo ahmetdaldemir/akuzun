@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('xml_categories', function (Blueprint $table) {
             $table->id();
             $table->string('ProductId');
-            $table->string('CategoryId');
-            $table->string('CategorName');
-            $table->string('CategoryPath');
+            $table->string('CategoryId')->nullable();
+            $table->string('CategorName')->nullable();
+            $table->string('CategoryPath')->nullable();
             $table->timestamps();
         });
     }
