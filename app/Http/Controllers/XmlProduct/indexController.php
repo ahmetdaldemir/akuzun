@@ -53,7 +53,7 @@ class indexController extends Controller
                 foreach ($val['Pictures']['Picture'] as $item) {
                     $XmlPictures = new XmlPictures;
                     $XmlPictures->ProductId = $val['ProductId'];
-                    $XmlPictures->PictureUrl = $item['PictureUrl'];
+                    $XmlPictures->PictureUrl = $item['PictureUrl']??"";
                     $XmlPictures->save();
 
                     $url = $item['PictureUrl'];
