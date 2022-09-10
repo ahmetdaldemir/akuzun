@@ -25,6 +25,7 @@ Route::get('/', function () {
 Route::post('xml.save', [XmlController::class, 'save'])->name('xml.save');
 Route::get('xml.parser', [XmlController::class, 'parser'])->name('xml.parser');
 Route::get('xml.databaseXml', [XmlController::class, 'databaseXml'])->name('xml.databaseXml');
+Route::get('xml.myxmlXml', [XmlController::class, 'myxmlXml'])->name('xml.myxmlXml');
 
 
 Route::get('/category', [\App\Http\Controllers\Trendyol\IndexController::class,'categoryUrlCrawler']);
