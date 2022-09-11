@@ -99,8 +99,8 @@ class XmlController extends Controller
                 $varyantItem->addChild('cost_price', 0);
                 $varyantItemAttributes = $varyantItem->addChild('options');
                 $varyantItemAttribute = $varyantItemAttributes->addChild('option1');
-                $varyantItemAttribute->addChild('name', $varyant->VariantName);
-                $varyantItemAttribute->addChild('value', $varyant->VariantValue);
+                $varyantItemAttribute->addChild('name', $varyant->ProductAttributes->ProductAttribute->VariantName);
+                $varyantItemAttribute->addChild('value', $varyant->ProductAttributes->ProductAttribute->VariantValue);
             }
 
             $category_data = $book1->addChild("category_data");
